@@ -42,6 +42,7 @@ public:
         {
             if(c1->val!=c2->val)
             {
+                slow->next=reverse(revhead);
                 return false;
             }
             c1=c1->next;
