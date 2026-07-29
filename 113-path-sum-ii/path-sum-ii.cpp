@@ -27,8 +27,9 @@ public:
             ans.push_back(path);
         }
     }
-    dfs(root->left,targetSum);
     dfs(root->right,targetSum);
+    dfs(root->left,targetSum);
+    
     path.pop_back();
 
     }
