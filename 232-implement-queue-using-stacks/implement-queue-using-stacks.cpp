@@ -2,14 +2,13 @@ class MyQueue {
 public:
     stack<int> instack;
     stack<int> outstack;
-    void transfer(){
+    void transfer()
+    {
         while(!instack.empty())
         {
             outstack.push(instack.top());
             instack.pop();
         }
-
-
     }
     MyQueue() {
         
@@ -17,7 +16,6 @@ public:
     
     void push(int x) {
         instack.push(x);
-        
     }
     
     int pop() {
@@ -25,9 +23,9 @@ public:
         {
             transfer();
         }
-        int val=outstack.top();
+        int x=outstack.top();
         outstack.pop();
-        return val;
+        return x;
     }
     
     int peek() {
@@ -36,12 +34,10 @@ public:
             transfer();
         }
         return outstack.top();
-
-        
     }
     
     bool empty() {
-        return(instack.empty()&&outstack.empty());
+        return (instack.empty() && outstack.empty());
     }
 };
 
