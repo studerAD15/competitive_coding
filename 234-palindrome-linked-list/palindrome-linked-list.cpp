@@ -28,12 +28,12 @@ public:
         return prev;
     }
     bool isPalindrome(ListNode* head) {
-        ListNode* fast=head;
         ListNode* slow=head;
+        ListNode* fast=head;
         while(fast->next!=nullptr && fast->next->next!=nullptr)
         {
             slow=slow->next;
-            fast=fast->next->next; 
+            fast=fast->next->next;
         }
         ListNode* revhead=reverse(slow->next);
         ListNode* c1=head;
@@ -42,13 +42,12 @@ public:
         {
             if(c1->val!=c2->val)
             {
-                slow->next=reverse(revhead);
+                reverse(slow->next);
                 return false;
             }
             c1=c1->next;
             c2=c2->next;
         }
-        slow->next=reverse(revhead);
         return true;
     }
 };
