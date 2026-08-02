@@ -10,29 +10,14 @@ public:
             {
                 return mid;
             }
-            else if(nums[mid]<target)
-            {
-                left=mid+1;
-            }
-            else
+            if(target<nums[mid])
             {
                 right=mid-1;
             }
-
+            else{
+                left=mid+1;
+            }
         }
         return left;
-        // int k=0;
-        // for(int i=0;i<nums.size();i++){
-        //     if(nums[i]==target)
-        //     {
-        //         return i;
-        //     }
-        //     else{
-        //         if(target>nums[i])
-        //         k++;
-        //     }
-
-        // }
-        // return k;
     }
 };
