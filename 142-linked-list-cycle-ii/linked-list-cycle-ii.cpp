@@ -31,6 +31,10 @@ public:
                 }
                 return slow;
             }
+            if(slow==nullptr)
+            {
+                return nullptr;
+            }
         }
         return nullptr;
     }
