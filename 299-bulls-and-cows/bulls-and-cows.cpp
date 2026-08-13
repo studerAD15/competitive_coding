@@ -1,8 +1,8 @@
 class Solution {
 public:
     string getHint(string secret, string guess) {
-        unordered_map<char,int> mp1;
-        unordered_map<char,int> mp2;
+        vector<int> s(10,0);
+        vector<int> g(10,0);
         int bulls=0;
         int cows=0;
         for(int i=0;i<secret.size();i++)
@@ -13,17 +13,13 @@ public:
             }
             else
             {
-                mp1[secret[i]]++;
-                mp2[guess[i]]++;
+                s[secret[i]-'0']++;
+                g[guess[i]-'0']++;
             }
         }
-        for(auto &p:mp1)
+        for(int i=0;i<10;i++)
         {
-            char d=p.first;
-            if(mp2.find(d)!=mp1.end())
-            {
-                cows+=min(mp1[d],mp2[d]);
-            }
+            cows+=min(s[i],g[i]);
         }
         return to_string(bulls)+"A"+to_string(cows)+"B";
     }
