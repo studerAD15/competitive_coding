@@ -7,33 +7,27 @@ public:
         {
             return ans;
         }
-        int sum=0;
-        int j=0;
-        if(k>0)
+        int start=1;
+        int end=k;
+        if(k<0)
         {
-            for(int i=1;i<=k;i++)
-            {
-                sum+=code[i];
-            }
-            for(int i=0;i<n;i++)
-            {
-                ans[i]=sum;
-                sum-=code[(i+1)%n];
-                sum+=code[(i+k+1)%n];
-            }
-        }
-        else{
             k=-k;
-            for(int i=1;i<=k;i++)
-            {
-                sum+=code[(n-i)%n];
-            }
-            for(int i=0;i<n;i++)
-            {
-                ans[i]=sum;
-                sum-=code[(i-k+n)%n];
-                sum+=code[i];
-            }
+            start=n-k;
+            end=n-1;
+           
+        }
+        int sum=0;
+        for(int i=start;i<=end;i++)
+        {
+            sum+=code[i%n];
+        }
+        for(int i=0;i<n;i++)
+        {
+            ans[i]=sum;
+            sum-=code[start%n];
+            start++;
+            end++;
+            sum+=code[end%n];
         }
         return ans;
     }
