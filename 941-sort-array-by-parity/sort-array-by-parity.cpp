@@ -3,23 +3,19 @@ public:
     vector<int> sortArrayByParity(vector<int>& nums) {
         int i=0;
         int n=nums.size();
-        vector<int> ans(n);
-        for(int j=0;j<n;j++)
+        int j=n-1;
+        while(i<j)
         {
-            if(nums[j]%2==0)
+            if(nums[i]%2==0)
             {
-                ans[i]=nums[j];
                 i++;
             }
-        }
-        for(int j=0;j<n;j++)
-        {
-            if(nums[j]%2!=0)
+            else
             {
-                ans[i]=nums[j];
-                i++;
+                swap(nums[i],nums[j]);
+                j--;
             }
         }
-        return ans;
+        return nums;
     }
 };
