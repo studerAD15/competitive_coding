@@ -3,25 +3,26 @@ public:
     vector<int> sortArrayByParityII(vector<int>& nums) {
         int i=0;
         int n=nums.size();
-        int j=n-1;
-        vector<int> even;
-        vector<int> odd;
-        vector<int> ans;
-        for(int i:nums)
+        int j=0;
+        vector<int> ans(n);
+        for(j=0;j<n;j++)
         {
-            if(i%2==0)
+            if(nums[j]%2==0)
             {
-                even.push_back(i);
+                ans[i]=nums[j];
+                i+=2;
             }
-            else
-            {
-                odd.push_back(i);
-            }
+            
         }
-        for(int i=0;i<n/2;i++)
+        i=1;
+        for(j=0;j<n;j++)
         {
-            ans.push_back(even[i]);
-            ans.push_back(odd[i]);
+            if(nums[j]%2!=0)
+            {
+                ans[i]=nums[j];
+                i+=2;
+            }
+            
         }
         return ans;
     }
