@@ -1,29 +1,25 @@
 class Solution {
 public:
     vector<int> sortArrayByParityII(vector<int>& nums) {
-        int i=0;
+        int e=0;
+        int o=1;
         int n=nums.size();
-        int j=0;
-        vector<int> ans(n);
-        for(j=0;j<n;j++)
-        {
-            if(nums[j]%2==0)
+        while(e<n && o<n){
+            if(nums[e]%2==0)
             {
-                ans[i]=nums[j];
-                i+=2;
+                e+=2;
             }
-            
-        }
-        i=1;
-        for(j=0;j<n;j++)
-        {
-            if(nums[j]%2!=0)
+            else if(nums[o]%2!=0)
             {
-                ans[i]=nums[j];
-                i+=2;
+                o+=2;
             }
-            
+            else
+            {
+                swap(nums[o],nums[e]);
+                o+=2;
+                e+=2;
+            }
         }
-        return ans;
+        return nums;
     }
 };
