@@ -4,7 +4,6 @@ public:
         int n=nums.size();
         vector<int> minn(n,INT_MAX);
         vector<int> maxx(n,INT_MIN);
-        int ans=INT_MAX;
         maxx[0]=nums[0];
         for(int i=1;i<n;i++)
         {
@@ -19,9 +18,9 @@ public:
         {
             if(maxx[i]-minn[i]<=k)
             {
-                ans=min(ans,i);
+                return i;
             }
         }
-        return (ans==INT_MAX)?-1:ans;
+        return -1;
     }
 };
