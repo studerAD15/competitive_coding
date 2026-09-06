@@ -28,7 +28,7 @@ public:
             {
                 ans++;
             }
-            left=right;
+            left++;
         }
         return ans;
     }
