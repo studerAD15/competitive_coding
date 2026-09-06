@@ -17,17 +17,18 @@ public:
         {
             return true;
         }
-        if(left!=nullptr && left->val>=root->val)
+        if(left!=nullptr && root->val<=left->val)
         {
             return false;
         }
-        if(right!=nullptr && right->val<=root->val)
+        if(right!=nullptr && root->val>=right->val)
         {
             return false;
         }
-        return solve(root->left,left,root) && solve(root->right,root,right);
+        return solve(root->left,left,root) 
+        && solve(root->right,root,right);
     }
     bool isValidBST(TreeNode* root) {
-        return solve(root,nullptr,nullptr);
+       return solve(root,nullptr,nullptr);
     }
 };
