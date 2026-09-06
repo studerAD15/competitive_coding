@@ -10,15 +10,15 @@ public:
         int start=0;
         for(char i:t)
         {
-            mp[i]++;
+            mp[i]--;
         }
         for(int right =0;right<m;right++)
         {
-            if(mp[s[right]]>0)
+            if(mp[s[right]]<0)
             {
                 k--;
             }
-            mp[s[right]]--;
+            mp[s[right]]++;
             while(k==0)
             {
                 int curr=right-left+1;
@@ -27,8 +27,8 @@ public:
                     window=curr;
                     start=left;
                 }
-                mp[s[left]]++;
-                if(mp[s[left]]>0)
+                mp[s[left]]--;
+                if(mp[s[left]]<0)
                 {
                     k++;
                 }
