@@ -7,7 +7,7 @@ public:
         int neg=1;
         for(int i=0;i<n;i++)
         {
-            if(nums[i]>0 && pos<n)
+            if(nums[i]>0)
             {
                 result[pos]=nums[i];
                 pos+=2;
