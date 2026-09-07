@@ -1,25 +1,28 @@
 class Solution {
 public:
-    vector<vector<int>> result;
     vector<int> comb;
-    void solve(vector<int>& candidates,int target,int index){
-        if(target==0)
+    unordered_set<int> sett;
+    int start=0;
+    vector<vector<int>> result;
+    void solve(vector<int> & x,int y,int i)
+    {
+        if(y==0)
         {
             result.push_back(comb);
             return;
         }
-        if(target<0)
+        if(y<0)
         {
-            return;
+            return ;
         }
-        for(int i=index;i<candidates.size();i++)
+        for(int j=i;j<x.size();j++)
         {
-            if(i>index && candidates[i]==candidates[i-1])
+            if(j>i && x[j-1]==x[j])
             {
                 continue;
-            }
-            comb.push_back(candidates[i]);
-            solve(candidates,target-candidates[i],i+1);
+            } 
+            comb.push_back(x[j]);
+            solve(x,y-x[j],j+1);
             comb.pop_back();
         }
     }
@@ -27,6 +30,5 @@ public:
         sort(candidates.begin(),candidates.end());
         solve(candidates,target,0);
         return result;
-        
     }
 };
