@@ -12,31 +12,29 @@
 class Solution {
 public:
     
-    vector<TreeNode*> solve(int s,int e)
-    {
-        vector<TreeNode*> ans;
-        if(s>e)
+    vector<TreeNode*> solve(int start,int end){
+        vector<TreeNode*> result;
+        if(start> end)
         {
-            ans.push_back(nullptr);
-            return ans;
+            result.push_back(nullptr);
+            return result;
         }
-        for(int i=s;i<=e;i++)
+        for(int i=start;i<=end;i++)
         {
-            vector<TreeNode*> lefttrees=solve(s,i-1);
-            vector<TreeNode*> righttrees=solve(i+1,e);
-            for(TreeNode* left:lefttrees)
+            vector<TreeNode*> lefttrees=solve(start,i-1);
+            vector<TreeNode*> righttrees=solve(i+1,end);
+            for(TreeNode* left: lefttrees)
             {
                 for(TreeNode* right:righttrees)
                 {
                     TreeNode* root=new TreeNode(i);
                     root->left=left;
                     root->right=right;
-                    ans.push_back(root);
+                    result.push_back(root);
                 }
             }
-
         }
-        return ans;
+        return result;
     }
     vector<TreeNode*> generateTrees(int n) {
         if(n==0)
