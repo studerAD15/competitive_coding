@@ -1,22 +1,22 @@
 class Solution {
 public:
+    vector<int> comb;
     vector<vector<int>> result;
-    vector<int> path;
-    void solve(vector<int> &x,int y,int index)
+    void solve(vector<int> & x,int y,int i)
     {
         if(y==0)
         {
-            result.push_back(path);
+            result.push_back(comb);
             return;
         }
-        if(y<0 || index==x.size())
+        if(y<0 || i==x.size())
         {
-            return;
+            return ;
         }
-        path.push_back(x[index]);
-        solve(x,y-x[index],index);
-        path.pop_back();
-        solve(x,y,index+1);
+        comb.push_back(x[i]);
+        solve(x,y-x[i],i);
+        comb.pop_back();
+        solve(x,y,i+1);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         solve(candidates,target,0);
