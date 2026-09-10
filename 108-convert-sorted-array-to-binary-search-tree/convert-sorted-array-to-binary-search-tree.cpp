@@ -18,7 +18,8 @@ public:
             return nullptr;
         }
         int mid=left+(right-left)/2;
-        TreeNode* root=new TreeNode(nums[mid]);
+        TreeNode* root=new TreeNode(0);
+        root->val=nums[mid];
         root->left=build(left,mid-1,nums);
         root->right=build(mid+1,right,nums);
         return root;
