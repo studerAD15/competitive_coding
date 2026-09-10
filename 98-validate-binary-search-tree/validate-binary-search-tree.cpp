@@ -29,6 +29,6 @@ public:
         && solve(root->right,root,right);
     }
     bool isValidBST(TreeNode* root) {
-       return solve(root,nullptr,nullptr);
+        return solve(root,nullptr,nullptr);
     }
 };
