@@ -11,23 +11,23 @@
  */
 class Solution {
 public:
-    TreeNode* find(TreeNode* root, int val)
-    {
-        if(root==nullptr||root->val==val)
+    TreeNode* searchBST(TreeNode* root, int val) {
+        while(root!=nullptr)
         {
-            return root;
-        }
-        if(root->val>val)
-        {
-            return find(root->left,val);
-        }
-        else
-        {
-            return find(root->right,val);
+            if(root->val==val)
+            {
+                return root;
+            }
+            else if(root->val<val)
+            {
+                root=root->right;
+            }
+            else
+            {
+                root=root->left;
+            }
+
         }
         return nullptr;
-    }
-    TreeNode* searchBST(TreeNode* root, int val) {
-        return find(root,val);
     }
 };
