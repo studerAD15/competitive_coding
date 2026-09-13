@@ -11,30 +11,29 @@
  */
 class Solution {
 public:
-    vector<vector<int>> ans;
+    vector<vector<int>> comb;
     vector<int> path;
-    void dfs(TreeNode* root, int targetSum){
-    if(root==nullptr)
+    void solve(TreeNode* root,int targetSum)
     {
-        return ;
-    }
-    path.push_back(root->val);
-    targetSum-=root->val;
-    if(root->left==nullptr && root->right==nullptr)
-    {
-        if(targetSum==0)
+        if(root==nullptr)
         {
-            ans.push_back(path);
+            return ;
         }
-    }
-    dfs(root->right,targetSum);
-    dfs(root->left,targetSum);
-    
-    path.pop_back();
-
+        path.push_back(root->val);
+        targetSum-=root->val;
+        if(root->left==nullptr && root->right==nullptr)
+        {
+            if(targetSum==0)
+            {
+                comb.push_back(path);
+            }
+        }
+        solve(root->left,targetSum);
+        solve(root->right,targetSum);
+        path.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        dfs(root,targetSum);
-        return ans;
+        solve(root,targetSum);
+        return comb;
     }
 };
