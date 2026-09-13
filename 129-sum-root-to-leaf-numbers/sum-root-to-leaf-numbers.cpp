@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    vector<int> comb;
+    int sum=0;
     int num=0;
     void solve(TreeNode* root)
     {
@@ -23,7 +23,7 @@ public:
         num=num*10+root->val;
         if(root->left==nullptr && root->right==nullptr)
         {
-            comb.push_back(num);
+            sum+=num;
         }
         solve(root->left);
         solve(root->right);
@@ -32,11 +32,6 @@ public:
     }
     int sumNumbers(TreeNode* root) {
         solve(root);
-        int sum=0;
-        for(int i:comb)
-        {
-            sum+=i;
-        }
         return sum;
     }
 };
