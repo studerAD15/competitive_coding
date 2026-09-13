@@ -11,34 +11,19 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,int val)
-    {
-        if(val<root->val)
-        {
-            if(root->left==nullptr)
-            {
-                root->left =new TreeNode(val);
-                return ;
-            }
-            solve(root->left,val);
-        }
-        else
-        {
-            if(root->right==nullptr)
-            {
-                root->right= new TreeNode(val);
-                return ;
-            }
-            solve(root->right,val);
-        }
-
-    }
     TreeNode* insertIntoBST(TreeNode* root, int val) {
         if(root==nullptr)
         {
             return new TreeNode(val);
         }
-        solve(root,val);
+        if(val<root->val)
+        {
+            root->left=insertIntoBST(root->left,val);
+        }
+        else
+        {
+            root->right=insertIntoBST(root->right,val);
+        }
         return root;
     }
 };
