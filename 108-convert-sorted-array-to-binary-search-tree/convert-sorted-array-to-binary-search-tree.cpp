@@ -10,21 +10,20 @@
  * };
  */
 class Solution {
-public:
-    TreeNode* build(int left,int right,vector<int>& nums)
+public: 
+    TreeNode* solve(int l,int r,vector<int>& nums)
     {
-        if(left>right)
+        if(l>r)
         {
             return nullptr;
         }
-        int mid=left+(right-left)/2;
-        TreeNode* root=new TreeNode(0);
-        root->val=nums[mid];
-        root->left=build(left,mid-1,nums);
-        root->right=build(mid+1,right,nums);
-        return root;
+        int m=l+(r-l)/2;
+        TreeNode* node=new TreeNode(nums[m]);
+        node->left=solve(l,m-1,nums);
+        node->right=solve(m+1,r,nums);
+        return node;
     }
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return build(0,nums.size()-1,nums);
+        return solve(0,nums.size()-1,nums);
     }
 };
