@@ -17,20 +17,20 @@ public:
         int diff=(sum1-sum2)/2;
         int i=0;
         int j=0;
-        while(i<aliceSizes.size() && j< bobSizes.size())
+        while(i<bobSizes.size() && j<aliceSizes.size())
         {
-            int x=aliceSizes[i]-bobSizes[j];
+            int x=aliceSizes[j]-bobSizes[i];
             if(x==diff)
             {
-                return {aliceSizes[i],bobSizes[j]};
+                return {aliceSizes[j],bobSizes[i]};
             }
             if(x<diff)
             {
-                i++;
+                j++;
             }
             if(x>diff)
             {
-                j++;
+                i++;
             }
         }
         return {-1,-1};
