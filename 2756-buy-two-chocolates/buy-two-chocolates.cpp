@@ -7,11 +7,11 @@ public:
         {
             if(i<minn)
             {
+                min2=minn;
                 minn=i;
             }
-            if(i<min2 && min2>minn)
+            else if(i<min2)
             {
-                minn=min2;
                 min2=i;
             }
         }
