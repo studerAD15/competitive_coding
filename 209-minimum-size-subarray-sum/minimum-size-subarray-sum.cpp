@@ -7,14 +7,11 @@ public:
         for(int right=0;right<nums.size();right++)
         {
             sum+=nums[right];
-            while(sum>target)
+            while(sum>=target)
             {
                 len=min(len,right-left+1);
                 sum-=nums[left];
                 left++;
-            }
-            if(sum==target){
-            len=min(len,right-left+1);
             }
         }
         return (len==INT_MAX)?0:len;
