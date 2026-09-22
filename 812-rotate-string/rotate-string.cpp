@@ -3,20 +3,16 @@ public:
     bool rotateString(string s, string goal) {
         if(s.size()!=goal.size())
         {
-            return  false;
+            return false;
         }
         if(s==goal)
         {
             return true;
         }
-        string a=s;
-        for(int i=0;i<s.size()-1;i++)
+        string a=s+s;
+        if(a.find(goal)!=string::npos)
         {
-            a=a.substr(1)+a[0];
-            if(a==goal)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
