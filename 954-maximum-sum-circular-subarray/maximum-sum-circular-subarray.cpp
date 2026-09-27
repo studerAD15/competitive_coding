@@ -7,7 +7,7 @@ public:
         int minans=nums[0];
         int total=nums[0];
         int n=nums.size();
-        for(int i=1;i<n;i++)
+        for(int i=1;i<nums.size();i++)
         {
             int a=nums[(i)%n]+bestval;
             int b=nums[(i)%n];
@@ -17,9 +17,13 @@ public:
             int d=nums[(i)%n];
             worstval=min(c,d);
             minans=min(minans,worstval);
-            total+=nums[i];
+            total+=nums[(i)];
         }
-        if(ans<0) return ans;
+        if(ans<0)
+        {
+            return ans;
+        }
         return max(ans,total-minans);
+
     }
 };
