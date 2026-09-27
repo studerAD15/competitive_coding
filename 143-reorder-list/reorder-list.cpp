@@ -10,27 +10,10 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* head)
-    {
-        if(head==nullptr || head->next==nullptr)
-        {
-            return head;
-        }
-        ListNode* prev=nullptr;
-        ListNode* curr=head;
-        while(curr!=nullptr)
-        {
-            ListNode* next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-        }
-        return prev;
-    }
     void reorderList(ListNode* head) {
         if(head==nullptr || head->next==nullptr)
         {
-            return;
+            return ;
         }
         ListNode* slow=head;
         ListNode* fast=head;
@@ -39,18 +22,26 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        ListNode* revhead=reverse(slow->next);
+        ListNode* second=slow->next;
         slow->next=nullptr;
-        ListNode* odd=head;
-        ListNode* even=revhead;
-        while(even!=nullptr)
+        ListNode* prev=nullptr;
+        while(second)
         {
-            ListNode* temp1=odd->next;
-            ListNode* temp2=even->next;
-            odd->next=even;
-            even->next=temp1;
-            odd=temp1;
-            even=temp2;
+            ListNode* next=second->next;
+            second->next=prev;
+            prev=second;
+            second=next;
+        }
+        second=prev;
+        ListNode* first=head;
+        while(second)
+        {
+            ListNode* temp1=first->next;
+            ListNode* temp2=second->next;
+            first->next=second;
+            second->next=temp1;
+            first=temp1;
+            second=temp2;
         }
     }
 };
