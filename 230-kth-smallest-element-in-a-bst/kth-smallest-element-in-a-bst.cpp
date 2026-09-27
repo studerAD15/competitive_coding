@@ -12,25 +12,23 @@
 class Solution {
 public:
     int count=0;
-    int ans=0;
-    void solve(TreeNode* root, int k)
+    int answer=0;
+    void solve(TreeNode* root,int& k)
     {
-        if(root==nullptr)
+        if(root==nullptr){ return ;}
+        solve(root->left,k);
+        k--;
+        if(k==0)
         {
+            answer=root->val;
             return ;
         }
-        solve(root->left,k);
-        count++;
-        if(count==k)
-        {
-            ans=root->val;
-            return;
-        }
+        if(k>0){
         solve(root->right,k);
-        
+        }
     }
     int kthSmallest(TreeNode* root, int k) {
         solve(root,k);
-        return ans;
+        return answer;
     }
 };
