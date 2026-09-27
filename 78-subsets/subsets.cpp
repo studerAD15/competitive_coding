@@ -1,22 +1,21 @@
 class Solution {
 public:
-    vector<vector<int>> result;
-    vector<int> comb;
+    vector<vector<int>> comb;
+    vector<int> path;
     void solve(vector<int>& nums,int index)
     {
         if(index==nums.size())
         {
-            result.push_back(comb);
+            comb.push_back(path);
             return;
         }
-        comb.push_back(nums[index]);
+        path.push_back(nums[index]);
         solve(nums,index+1);
-        comb.pop_back();
+        path.pop_back();
         solve(nums,index+1);
-
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         solve(nums,0);
-        return result;
+        return comb;
     }
 };
