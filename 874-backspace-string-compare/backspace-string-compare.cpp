@@ -2,9 +2,9 @@ class Solution {
 public:
     bool backspaceCompare(string s, string t) {
         int i=s.size()-1;
+        int j=t.size()-1;
         int skips=0;
         int skipt=0;
-        int j=t.size()-1;
         while(i>=0 || j>=0)
         {
             while(i>=0){
@@ -23,9 +23,8 @@ public:
                 break;
             }
             }
-            while(j>=0)
-            {
-                if(t[j]=='#')
+            while(j>=0){
+            if(t[j]=='#')
             {
                 skipt++;
                 j--;
@@ -47,16 +46,16 @@ public:
                     return false;
                 }
             }
-            else{
-            if(i>=0 || j>=0)
+            else
             {
-                return false;
+                if(i>=0 || j>=0)
+                {
+                    return false;
+                }
             }
-            }
-            i--;
-            j--;
+        i--;
+        j--;
         }
         return true;
-
     }
 };
