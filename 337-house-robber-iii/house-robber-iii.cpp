@@ -11,20 +11,20 @@
  */
 class Solution {
 public:
-    pair<int,int> r(TreeNode* root)
+    pair<int,int> solve(TreeNode* root)
     {
         if(root==nullptr)
         {
             return {0,0};
         }
-        pair<int,int> left=r(root->left);
-        pair<int,int> right=r(root->right);
+        auto left=solve(root->left);
+        auto right=solve(root->right);
         int rob=root->val+left.second+right.second;
-        int nrob=max(left.first,left.second)+max(right.first,right.second);
-        return {rob,nrob};
+        int notrob=max(left.first,left.second)+max(right.first,right.second);
+        return {rob,notrob};
     }
     int rob(TreeNode* root) {
-        pair<int,int> ans=r(root);
-        return max(ans.first,ans.second);
+        auto result=solve(root);
+        return max(result.first,result.second);
     }
 };
