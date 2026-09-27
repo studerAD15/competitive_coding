@@ -1,26 +1,24 @@
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
-        long long sum=0;
         unordered_map<int,int> mp;
         mp[0]=-1;
-        int n=nums.size();
-        for(int i=0;i<n;i++)
+        int sum=0;
+        for(int i=0;i<nums.size();i++)
         {
             sum+=nums[i];
-           int  rem=sum%k;
+            int rem=sum%k;
             if(mp.find(rem)!=mp.end())
             {
-                if((i-mp[rem])>=2)
+                if(i-mp[rem]>=2)
                 {
                     return true;
                 }
-                
             }
             else
-                {
-                    mp[rem]=i;
-                }
+            {
+                mp[rem]=i;
+            }
         }
         return false;
     }
