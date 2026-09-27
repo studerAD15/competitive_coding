@@ -1,34 +1,32 @@
 class Solution {
 public:
-    vector<int> comb;
-    unordered_set<int> sett;
-    int start=0;
-    vector<vector<int>> result;
-    void solve(vector<int> & x,int y,int i)
+    vector<vector<int>> comb;
+    vector<int> path;
+    void solve(vector<int>& candidates, int target,int index)
     {
-        if(y==0)
+        if(target==0)
         {
-            result.push_back(comb);
+            comb.push_back(path);
             return;
         }
-        if(y<0)
+        for(int i=index;i<candidates.size();i++)
         {
-            return ;
-        }
-        for(int j=i;j<x.size();j++)
-        {
-            if(j>i && x[j-1]==x[j])
+            if(i>index && candidates[i]==candidates[i-1])
             {
                 continue;
-            } 
-            comb.push_back(x[j]);
-            solve(x,y-x[j],j+1);
-            comb.pop_back();
+            }
+            if(candidates[i]>target)
+            {
+                break;
+            }
+            path.push_back(candidates[i]);
+            solve(candidates,target-candidates[i],i+1);
+            path.pop_back();
         }
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(),candidates.end());
         solve(candidates,target,0);
-        return result;
+        return comb;
     }
 };
