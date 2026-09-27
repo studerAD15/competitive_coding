@@ -1,25 +1,26 @@
 class Solution {
 public:
-    int ss(int n)
+    int sumget(int n)
     {
         int sum=0;
         while(n>0)
         {
-            int digit=n%10;
-            sum=sum+(digit*digit);
+            sum+=(n%10)*(n%10);
             n/=10;
         }
-        n=sum;
         return sum;
     }
     bool isHappy(int n) {
-        int s=n;
-        int f=n;
-        do
+        unordered_set<int> st;
+        while(n!=1)
         {
-            s=ss(s);
-            f=ss(ss(f));
-        }while(s!=f);
-        return (s==1);
+            if(st.contains(n))
+            {
+                return false;
+            }
+            st.insert(n);
+            n=sumget(n);
+        }
+        return true;
     }
 };
