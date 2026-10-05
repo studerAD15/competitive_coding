@@ -7,7 +7,7 @@ public:
         for(int right=0;right<nums.size();right++)
         {
             sum+=nums[right];
-            while((right-left+1)==k)
+            while((right-left+1)>=k)
             {
                 double avg=sum/k;
                 ans=max(ans,avg);
