@@ -1,27 +1,44 @@
 class Solution {
 public:
-    int solve(string s, int k){
-        if(s.size()<k)
-        {
-            return 0;
-        }
-        unordered_map<char ,int> mp;
-        for(char i:s)
-        {
-            mp[i]++;
-        }
-        for(int i=0;i<s.size();i++)
-        {
-            if(mp[s[i]]<k)
+    int longestSubstring(string s, int k) {
+        int ans=0;
+        for(int unique=1;unique<=26;unique++){
+            vector<int> freq(26,0);
+            int left=0;
+            int uniquecount=0;
+            int atleastk=0;
+            for(int right=0;right<s.size();right++)
             {
-                int left=solve(s.substr(0,i),k);
-                int right=solve(s.substr(i+1,s.size()-1),k);
-                return max(left,right);
+                int idx=s[right]-'a';
+                if(freq[idx]==0)
+                {
+                    uniquecount++;
+                }
+                freq[idx]++;
+                if(freq[idx]==k)
+                {
+                    atleastk++;
+                }
+                while(uniquecount>unique)
+                {
+                    int remidx=s[left]-'a';
+                    if(freq[remidx]==k)
+                    {
+                        atleastk--;
+                    }
+                    freq[remidx]--;
+                    if(freq[remidx]==0)
+                    {
+                        uniquecount--;
+                    }
+                    left++;
+                }
+                if(uniquecount==unique && uniquecount==atleastk)
+                {
+                    ans=max(ans,right-left+1);
+                }
             }
         }
-        return s.size();
-    }
-    int longestSubstring(string s, int k) {
-        return solve(s,k);
+        return ans;
     }
 };
